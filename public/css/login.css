@@ -1,0 +1,204 @@
+*{
+  padding:0px;
+  margin:0px;
+}
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+/* ヘッダー */
+.header-wrapper{
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color:#fff;
+  position: fixed;
+}
+.main-nav{
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 15px;
+}
+.sub-nav{
+  padding-right: 3%;
+  display: flex;
+}
+.sub-nav-title{
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.page-number{
+  color: #2ca9e1;
+  font-weight: bold;
+}
+.word-orange{
+  color: #f08300;
+  font-weight: bold;
+}
+.nav-item{
+  list-style: none;
+}
+
+/* メインコンテンツ */
+.main-content{
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+.main-content-wrapper{
+  max-width: 350px;
+  margin: 0 auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  padding: 30px 0;
+}
+.main-content-wrapper h1{ 
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 33px;
+  font-weight: lighter;
+  font-family: 'Cherry Swash', cursive;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+.form-control{
+  border: none;
+  border-bottom: 2px solid  #f08300;
+  width: 100%;
+  height: 50px;
+  font-size: 1em;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.form-control:focus{
+  border-bottom: 2px solid #2ca9e1;
+  outline: none;
+}
+.info-under{
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  margin: 0 auto;
+}
+.remember{
+  display: flex;
+  padding-bottom: 15px;
+  vertical-align:middle;
+  color: #757579;
+}
+.check-box{
+  margin-right: 10px;
+}
+
+.button{
+  background: #8BD8DE;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+}
+button:hover{
+  background:#00B6C4;
+}
+/* メディアクエリ */
+@media screen and (max-width: 640px)
+{
+  .header-wrapper{
+    padding:2% 3%;
+  }
+  .main-nav{
+    padding-top:10px;
+  }
+  .sub-nav-title{
+    display:none;
+  }
+  .hamburger-hidden {
+    display: none;
+  }
+  .hamburger-open {
+    display: flex;
+    height: 40px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+    padding-right: 20px;
+  }
+  .hamburger span,
+  .hamburger span:before,
+  .hamburger span:after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 20px;
+    background: #333;
+    transition: 0.5s;
+    position: absolute;
+  }
+  .hamburger-open span:before {
+    bottom: 8px;
+  }
+  .hamburger-open span:after {
+    top: 8px;
+  }
+  #hamburger-check:checked ~ .hamburger-open span {
+    background: rgba(255, 255, 255, 0);
+  }
+  #hamburger-check:checked ~ .hamburger-open span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+  }
+  #hamburger-check:checked ~ .hamburger-open span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  .hamburger-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 99;
+    background: #fff;
+    transition: .5s;
+    padding-left: 3%;
+  }
+  .hamburger-item{
+    padding-top:5vw;
+    list-style: none;
+    font-weight: bold;
+  }
+  .hamburger-item-name{
+    color:black;
+    text-decoration: none;
+    font-size:15px;
+    letter-spacing: 3px;
+    text-align:left;
+    font-family: 'Teko', sans-serif;
+    font-weight: lighter;
+  } 
+  #hamburger-check:checked ~ .hamburger-content {
+    left: 0;
+  }
+}
+@media screen and (min-width: 640px){
+  .main-content{
+    padding-top: 150px;
+    padding-bottom: 50px;
+  }
+  .hamburger{
+    display:none;
+  }
+  .header-wrapper{
+    padding: 20px 30px;
+  }
+  .sub-nav-title{
+    padding:0 10px;
+  }
+}
