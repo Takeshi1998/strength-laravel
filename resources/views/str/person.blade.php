@@ -94,7 +94,7 @@
         <tr>
            @foreach($array as $day)
            @if($todaycolor==$day)
-           <td class="bg-primary">
+           <td style="color:red;">
              {{$day}}
             </td>
            @elseif(in_array($day,$check))
