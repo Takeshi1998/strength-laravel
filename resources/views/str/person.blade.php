@@ -67,7 +67,7 @@
             </a>
           </li>
 
-          <li class="page-item"><a class="page-link" href="#">10月</a></li>
+        <li class="page-item"><a class="page-link" href="#">{{$nmonth}}</a></li>
   
           <li class="page-item">
             <a class="page-link" href="?after=202011" aria-label="Next">

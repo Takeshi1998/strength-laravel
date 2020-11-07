@@ -86,6 +86,7 @@ if(empty($_GET['before'])&&empty($_GET['after'])){
   
   $nmonth=$calender->format('n');
 
+
 //   データを記入した日をtimestamp型で$timedayに格納
 
 if($comments!="NULL"){
