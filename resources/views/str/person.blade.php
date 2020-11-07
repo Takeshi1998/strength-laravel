@@ -61,7 +61,7 @@
   <nav aria-label="Page navigation example" class="float-right">
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="?before=202009" aria-label="Previous">
+          <a class="page-link" href="?before={{$before}}" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
             </a>
@@ -70,7 +70,7 @@
         <li class="page-item"><a class="page-link" href="#">{{$nmonth}}</a></li>
   
           <li class="page-item">
-            <a class="page-link" href="?after=202011" aria-label="Next">
+          <a class="page-link" href="?after={{$after}}" aria-label="Next">
               <span class="sr-only">Next</span>
               <span aria-hidden="true">&raquo;</span>
             </a>
