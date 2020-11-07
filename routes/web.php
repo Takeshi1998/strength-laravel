@@ -33,6 +33,7 @@ Route::post('/tweet/post','TweetController@post');
 Route::get('/delete','DeleteController@delete');
 Route::get('/update','UpdateController@Update');
 Route::post('/update/tweet','UpdateController@UpdateTweet');
+Route::get('/study','StudyController@index');
 
 Route::get('/calender',function(){
     return view('str.calender');

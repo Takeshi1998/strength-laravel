@@ -31,7 +31,7 @@
       
                 <a class="sub-nav-title" href="./tweet">記録する</a>
      
-                    <a class="sub-nav-title" href="#">筋トレのすゝめ</a>
+                    <a class="sub-nav-title" href="./study">筋トレのすゝめ</a>
         </nav>
         <div class="hamburger">
     <input type="checkbox" id="hamburger-check" class="hamburger-hidden" >
@@ -45,7 +45,7 @@
             <a class="hamburger-item-name" href="./tweet">記録する</a>
           </li>
           <li class="hamburger-item">
-            <a class="hamburger-item-name" href="#">筋トレのすゝめ</a>
+            <a class="hamburger-item-name" href="./study">筋トレのすゝめ</a>
           </li>
           </li>
         </ul>
