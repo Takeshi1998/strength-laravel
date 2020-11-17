@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $comments=Comment::orderBy('id','desc')->simplePaginate(10);
+        $comments=Comment::orderBy('id','desc')->paginate(10);
         return view('str.home',['comments'=>$comments]);
     }
 }

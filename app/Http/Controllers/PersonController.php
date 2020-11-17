@@ -19,7 +19,7 @@ class PersonController extends Controller
         $judge=Comment::where('name',$user->name)->exists();
         if($judge){
           $comments=Comment::where('name',$user->name)->orderBy('id','desc')
-          ->simplePaginate(5);
+          ->paginate(10);
         }else{
           $comments="NULL";
         }
@@ -32,6 +32,9 @@ class PersonController extends Controller
 if(empty($_GET['before'])&&empty($_GET['after'])){
     $calender=new Carbon();
     $todaycolor=$calender->format('d');
+    $start=$calender->format('Ym');
+    $start=$start.'01';
+    $day1=date('w',strtotime($start));
   }else{
   
         if(!empty($_GET['before'])){
@@ -42,22 +45,21 @@ if(empty($_GET['before'])&&empty($_GET['after'])){
           $month=$_GET['after'];
       }
     
-  $calender=new Carbon($month.'01');
+      $calender=new Carbon($month.'01');
+      $day1=$calender->format('w');
   $todaycolor=10000000;
   }
 
  
   
-  
+
   $today=$calender->format('Ym');
 
   $before=date('Ym',strtotime($today.'01'.'-1 month'));
   $after=date('Ym',strtotime($today.'01'.'+1 month'));
   
   
-  
-  // 1日の曜日を数字に変換
-  $day1=$calender->format('w');
+
   // 今月の最後
   $daynumber=$calender->endOfMonth()->format('d');
   
