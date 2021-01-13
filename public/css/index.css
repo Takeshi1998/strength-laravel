@@ -6,6 +6,7 @@
 
 /* ヘッダー */
 
+
 .header-wrapper{
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -90,20 +91,35 @@
   line-height: 20px;
 }
 .pagination{
-  font-size: 14px;
-  width: 60%;
-  margin:0 auto;
-  display: flex;
-  justify-content: space-between;
-  padding:20px
+    font-size: 14px;
+    width: 60%;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding:20px
 }
 .page-item{
-  display: inline;
+    display: inline;
 }
 .page-link{
-  text-decoration: none;
-  color:  #2ca9e1;
+    text-decoration: none;
+    color:  #2ca9e1;
 }
+/* vue */
+.unlike-btn{
+  font-size: 30px;
+  margin-right: 20px;
+  opacity:0.3;
+}
+.like-btn{
+  font-size: 30px;
+  margin-right: 20px;
+ color:#FF0	;
+}
+
+[v-cloak] {
+    display: none;
+  }
 /* メディアクエリ */
 @media screen and (max-width: 640px)
 {
@@ -180,13 +196,25 @@
     text-align:left;
     font-family: 'Teko', sans-serif;
     font-size: 13px;
-  } 
+  }
   .hamburger-item-name:hover{
     color: rgb(240, 157, 57);
   }
   #hamburger-check:checked ~ .hamburger-content {
     left: 0;
   }
+
+  .unlike-btn{
+    font-size: 20px;
+    margin-right: 15px;
+  }
+
+  .like-btn{
+    font-size: 20px;
+    margin-right: 15px;
+   color:#FF0	;
+  }
+
 }
 @media screen and (min-width: 640px){
   .hamburger{
