@@ -230,4 +230,15 @@
   .sub-nav-title{
     padding:0 10px;
   }
+
+  .like-btn{
+    font-size: 30px;
+    margin-right: 20px;
+    color:black;
+  }
+  .unlike-btn{
+    font-size: 30px;
+    margin-right: 20px;
+   color:#FF0	;
+  }
 }
