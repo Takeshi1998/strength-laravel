@@ -22,7 +22,7 @@
  methods:{
     like_check() {
      const id = this.comment_id
-     const array = ["api/comment/",id,"/likedcheck"];
+     const array = ["comment/",id,"/likedcheck"];
      const path = array.join('')
      axios.get(path).then(res => {
        if(res.data==1) {

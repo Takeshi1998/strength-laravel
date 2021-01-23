@@ -1966,7 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var id = this.comment_id;
-      var array = ["api/comment/", id, "/likedcheck"];
+      var array = ["comment/", id, "/likedcheck"];
       var path = array.join('');
       axios.get(path).then(function (res) {
         if (res.data == 1) {
@@ -37647,7 +37647,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "" } }, [
+  return _c("div", [
     _vm.status == false && _vm.show
       ? _c(
           "a",

@@ -40,5 +40,6 @@ Route::get('/calender',function(){
     return view('str.calender');
 });
 
+Route::get('/comment/{id}/likedcheck','LikeController@check')->name('Like.check');
 Route::get('/comment/{id}/like','LikeController@index')->name('Like.index');
 Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');

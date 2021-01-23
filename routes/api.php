@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/comment/{id}/likedcheck','LikeController@check')->name('Like.check');
+
 
 

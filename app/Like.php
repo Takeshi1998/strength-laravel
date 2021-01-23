@@ -22,7 +22,7 @@ class Like extends Model
 //    likeのレコードがあるならtrue
    public static function checkLike($comment_id){
        $id=Auth::id();
-        $like=Like::where('comment_id',$comment_id)->where('user_id',31)->first();
+        $like=Like::where('comment_id',$comment_id)->where('user_id',$id)->first();
         if($like!=null){
             $like=1;
         }else{
