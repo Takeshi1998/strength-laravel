@@ -1950,11 +1950,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   // laravelのbladeでcommentのidを付与
-  props: ['comment_id'],
+  props: ['comment_id', 'like_count'],
   data: function data() {
     return {
       status: false,
-      show: false
+      show: false,
+      likeCount: this.like_count
     };
   },
   created: function created() {
@@ -1969,7 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
       var path = array.join('');
       axios.get(path).then(function (res) {
         if (res.data == 1) {
-          //like.checkで1を返すかどうか調べる
+          //like.checkでtrueを返すかどうか調べる
           _this.status = true;
           _this.show = true;
         } else {
@@ -1981,7 +1982,36 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     like: function like() {
-      console.log('test');
+      var _this2 = this;
+
+      this.show = false;
+      var id = this.comment_id;
+      var array = ["comment/", id, "/like"];
+      var path = array.join('');
+      axios.get(path).then(function (res) {
+        _this2.likeCount += 1;
+        _this2.status = true;
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this2.show = true;
+      });
+    },
+    unlike: function unlike() {
+      var _this3 = this;
+
+      this.show = false;
+      var id = this.comment_id;
+      var array = ["comment/", id, "/unlike"];
+      var path = array.join('');
+      axios.get(path).then(function (res) {
+        _this3.likeCount -= 1;
+        _this3.status = false;
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this3.show = true;
+      });
     }
   }
 });
@@ -37617,7 +37647,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { attrs: { id: "" } }, [
     _vm.status == false && _vm.show
       ? _c(
           "a",
@@ -37630,7 +37660,11 @@ var render = function() {
               }
             }
           },
-          [_c("i", { staticClass: "fa fa-dumbbell unlike-btn" })]
+          [
+            _c("i", { staticClass: "fa fa-dumbbell like-btn" }, [
+              _vm._v(_vm._s(_vm.likeCount))
+            ])
+          ]
         )
       : _vm._e(),
     _vm._v(" "),
@@ -37638,15 +37672,19 @@ var render = function() {
       ? _c(
           "a",
           {
-            attrs: { href: "", type: "button" },
+            attrs: { href: "" },
             on: {
               click: function($event) {
                 $event.preventDefault()
-                return _vm.like($event)
+                return _vm.unlike($event)
               }
             }
           },
-          [_c("i", { staticClass: "fa fa-dumbbell like-btn" })]
+          [
+            _c("i", { staticClass: "fa fa-dumbbell unlike-btn" }, [
+              _vm._v(_vm._s(_vm.likeCount))
+            ])
+          ]
         )
       : _vm._e()
   ])

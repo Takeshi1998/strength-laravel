@@ -24,6 +24,7 @@ Route::get('log',function(){
 
 Auth::routes();
 
+Route::get('/test', 'LikeController@check');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/person','PersonController@index');
 // ツイート
@@ -38,3 +39,6 @@ Route::get('/study','StudyController@index');
 Route::get('/calender',function(){
     return view('str.calender');
 });
+
+Route::get('/comment/{id}/like','LikeController@index')->name('Like.index');
+Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');

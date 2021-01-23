@@ -78,8 +78,8 @@
               {!! nl2br(e($comment->tweet))!!}
             </li>
             <li class="home-list-content-right">
-                {{-- <i class="fa fa-dumbbell unlike-btn" ></i> --}}
-                    <like-component v-bind:comment_id="{{$comment->id}}"></like-component>
+
+                 <like-component v-bind:comment_id="{{$comment->id}}" v-bind:like_count="{{$comment->likes->count()}}"></like-component>
                 </li>
             </ul>
             @endforeach
@@ -87,9 +87,6 @@
     </div>
     <span class="page-end">{{$comments->links()}}</span>
 
-    {{-- <div id="app">
-        <like-component></like-component>
-    </div> --}}
 </main>
 <script src=" {{ mix('js/app.js') }} "></script>
 </body>

@@ -24,12 +24,5 @@ class Comment extends Model
 
     protected $fillable = ['tweet','zikan'];
 
-    public static function checkLike($comment_id){
-        // likes_countが1ならいいね済み
-        $like=Comment::where('id',$comment_id)->withCount(['likes' => function (Builder $query) {
-            $query->where('user_id',1);
-        }])->get();
 
-        return ($like[0]->likes_count);
-        }
 }
