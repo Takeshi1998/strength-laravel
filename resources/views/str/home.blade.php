@@ -11,10 +11,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
-
-
     <!-- Styles -->
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link href="{{mix('css/app.css')}}" rel="stylesheet">
@@ -59,7 +55,7 @@
 
 <main class="home">
     <div class="home-wrapper">
-        <h1><span class="word-orange">H</span>OME<span class="page-number">{{$comments->currentPage()}}</span></h1>
+        <h1><i class="fas fa-check"></i><span class="word-orange">H</span>OME<span class="page-number">{{$comments->currentPage()}}</span></h1>
 
         <div id="app" v-cloak>
         @foreach($comments as $comment)
