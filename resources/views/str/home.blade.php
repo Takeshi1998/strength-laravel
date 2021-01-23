@@ -27,6 +27,8 @@
                 <a class="sub-nav-title" href="./person">{{Auth::user()->name}}の記録</a>
 
                     <a class="sub-nav-title" href="./study">筋トレのすゝめ</a>
+
+                    <a class="sub-nav-title" href="./logout">ログアウト</a>
         </nav>
         <div class="hamburger">
     <input type="checkbox" id="hamburger-check" class="hamburger-hidden" >
@@ -41,6 +43,9 @@
           </li>
           <li class="hamburger-item">
             <a class="hamburger-item-name" href="./study">筋トレのすゝめ</a>
+          </li>
+          <li class="hamburger-item">
+            <a class="hamburger-item-name" href="./logout">ログアウト</a>
           </li>
           </li>
         </ul>
