@@ -1,5 +1,5 @@
 <template>
- <div　id>
+ <div>
     <a href="" v-if="status==false&&show" @click.prevent="like"><i class="fa fa-dumbbell like-btn" >{{likeCount}}</i></a>
     <a href="" v-if="status==true&&show"  @click.prevent="unlike"><i class="fa fa-dumbbell unlike-btn" >{{likeCount}}</i></a>
  </div>
