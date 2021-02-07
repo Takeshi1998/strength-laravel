@@ -13,6 +13,10 @@ class Comment extends Model
         return $this->hasMany('App\Like');
     }
 
+    public function users(){
+        return $this->belongsTo('App\User','talker_id');
+    }
+
     protected $table='comments';
     public $timestamps = false;
 

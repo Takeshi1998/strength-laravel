@@ -44,3 +44,5 @@ Route::get('/calender',function(){
 Route::get('/comment/{id}/likedcheck','LikeController@check')->name('Like.check');
 Route::get('/comment/{id}/like','LikeController@index')->name('Like.index');
 Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');
+
+Route::get('/line','LineBotController@callback')->name('Line.callback');

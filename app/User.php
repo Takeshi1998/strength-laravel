@@ -15,6 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment','talker_id');
+    }
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
