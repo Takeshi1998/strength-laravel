@@ -8,7 +8,7 @@
 
 ## 🌐 App URL
 
-### **http://strength-gym.herokuapp.com/home**  
+### **https://strength-gym.herokuapp.com/home**  
 
 ##使用言語、フレームワーク<br>
 laravel,vue,html,css,sql
