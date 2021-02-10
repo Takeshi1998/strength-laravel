@@ -18,23 +18,14 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 class LineBotController extends Controller
 {
     public function callback(){
-
-        $json_string = file_get_contents('php://input');
-        if($json_string){
-            $json_object = json_decode($json_string);
-            $userId = $json_object->{"events"}[0]->{"source"}->{"userId"};
-            $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
-            $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ
-            $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};
-                     //返信メッセージ
-                     $return_message_text = "「" . $message_text . "」なの？";
-
-                     //返信実行
-                     $this->sending_messages(env('LINE_ACCESS_TOKEN'), $replyToken, $message_type, $return_message_text);
-        }else{
-            exit();
-        }
-
+        $jsonString = file_get_contents('php://input'); error_log($jsonString);
+        $jsonObj = json_decode($jsonString);
+        $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
+        
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
+        $bot = new LINEBot($httpClient, ['channelSecret' =>env('LINE_CHANNEL_SECRET')]);
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
     }
 
     public function message(){
@@ -81,30 +72,4 @@ class LineBotController extends Controller
         return ;
     }
 
-    private function sending_messages($accessToken, $replyToken, $message_type, $return_message_text){
-        //レスポンスフォーマット
-        $response_format_text = [
-            "type" => $message_type,
-            "text" => $return_message_text
-        ];
-
-        //ポストデータ
-        $post_data = [
-            "replyToken" => $replyToken,
-            "messages" => [$response_format_text]
-        ];
-
-        //curl実行
-        $ch = curl_init("https://api.line.me/v2/bot/message/reply");
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json; charser=UTF-8',
-            'Authorization: Bearer ' . $accessToken
-        ));
-        $result = curl_exec($ch);
-        curl_close($ch);
-    }
 }
