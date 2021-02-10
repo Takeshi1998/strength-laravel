@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0",
+        "linecorp/line-bot-sdk": "^6.2",
         "nesbot/carbon": "^2.44"
     },
     "require-dev": {
