@@ -18,14 +18,17 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 class LineBotController extends Controller
 {
     public function callback(){
-        $jsonString = file_get_contents('php://input'); error_log($jsonString);
-        $jsonObj = json_decode($jsonString);
-        $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
-        
+        http_response_code(200) ;
+
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
         $bot = new LINEBot($httpClient, ['channelSecret' =>env('LINE_CHANNEL_SECRET')]);
+        $signature = $_SERVER['HTTP_' . HTTPHeader::LINE_SIGNATURE];
+        $http_request_body = file_get_contents('php://input');
+        $events = $bot->parseEventRequest($http_request_body, $signature);
+        $event = $events[0];
+        $reply_token = $event->getReplyToken();
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        $bot->replyMessage($reply_token, $textMessageBuilder);
     }
 
     public function message(){
