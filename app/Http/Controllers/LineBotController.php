@@ -20,7 +20,7 @@ class LineBotController extends Controller
     public function callback(){
         http_response_code(200) ;
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('ot91TRjP8/mFy6jUxMbBmQZHTub3dI9HMqrZKXQFeSMePHIvRw6eL7XaIPaKaKeQs3qSj+/4/OwrK23AFio47e+NQaEc0aE/LuMyhdcosM7xD7Ka835E/5g3aoDy/X/iy2vFvn78ZHooocGMnLwYywdB04t89/1O/w1cDnyilFU='));
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ot91TRjP8/mFy6jUxMbBmQZHTub3dI9HMqrZKXQFeSMePHIvRw6eL7XaIPaKaKeQs3qSj+/4/OwrK23AFio47e+NQaEc0aE/LuMyhdcosM7xD7Ka835E/5g3aoDy/X/iy2vFvn78ZHooocGMnLwYywdB04t89/1O/w1cDnyilFU=');
         $bot = new LINEBot($httpClient, ['channelSecret' =>'f3138357b7c11c7860ad6d970db5b7ee']);
         $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
         $http_request_body = file_get_contents('php://input');
