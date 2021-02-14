@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
+use Exception;
 use LINE\LINEBot;
 use LINE\LINEBot\Constant\HTTPHeader;
 use LINE\LINEBot\SignatureValidator;
@@ -17,20 +18,24 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class LineBotController extends Controller
 {
-    public function callback(){
+    public function callback(Request $request){
 
         $httpClient = new CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
         $bot = new LINEBot($httpClient, ['channelSecret' =>env('LINE_CHANNEL_SECRET')]);
-        dd(1);
-        $signature = $_SERVER["HTTP_".HTTPHeader::LINE_SIGNATURE];
-        $http_request_body = file_get_contents('php://input');
-        $events = $bot->parseEventRequest($http_request_body, $signature);
-        $event = $events[0];
-        $reply_token = $event->getReplyToken();
-
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-        $response=$bot->replyMessage($reply_token, $textMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        $signature = $request->headers->get(HTTPHeader::LINE_SIGNATURE);
+        try{
+            $events = $bot->parseEventRequest($request->getContent(), $signature);
+            foreach($events as $event){
+                $reply_token = $event->getReplyToken();
+                $message = $event->getText();
+                $textMessageBuilder = new TextMessageBuilder($message);
+                $response=$bot->replyMessage($reply_token, $textMessageBuilder);
+                echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+                    }
+            }catch(Exception $e){
+            return;
+        }
+        return ;
     }
 
     public function message(){
