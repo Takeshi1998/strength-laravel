@@ -22,15 +22,13 @@ class LineBotController extends Controller
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
         try{
             // LINE Messaging APIの署名を取得
-            $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
-            $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
-            foreach ($events as $event) {
-                $user_id=$event->source->userId;
-                $token=$event->getReplyToken();
+            $json_string = file_get_contents('php://input');
+            $json_obj = json_decode($json_string);
+            $token=$json_obj->{"events"}[0]->{"replyToken"};
+            $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
                 $response = $bot->replyMessage(
-                    $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($user_id)
+                    $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($userId)
                 );
-            }
         }catch(Exception $e){
             'エラー';
         }
