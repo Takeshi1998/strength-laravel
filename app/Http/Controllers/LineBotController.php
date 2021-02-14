@@ -19,9 +19,10 @@ class LineBotController extends Controller
 {
     public function callback(){
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
+        $httpClient = new CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
         $bot = new LINEBot($httpClient, ['channelSecret' =>env('LINE_CHANNEL_SECRET')]);
         $signature = $_SERVER['HTTP_' .HTTPHeader::LINE_SIGNATURE];
+        dd(1);
         $http_request_body = file_get_contents('php://input');
         $events = $bot->parseEventRequest($http_request_body, $signature);
         $event = $events[0];
