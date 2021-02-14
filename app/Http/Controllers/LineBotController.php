@@ -34,6 +34,16 @@ class LineBotController extends Controller
         }
     }
 
+    public function message(Request $request){
+        $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
+        $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken);
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+        $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7', $textMessageBuilder);
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    }
+
 
 
 }
