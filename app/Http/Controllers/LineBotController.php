@@ -11,20 +11,15 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Exception;
 
-class LineController extends Controller
+class LineBotController extends Controller
 {
-    public function webhook (Request $request)
+    public function callback (Request $request)
     {
         $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
         $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
 
         // 署名のチェック
         $signature = $request->headers->get(HTTPHeader::LINE_SIGNATURE);
-
-        if (!SignatureValidator::validateSignature($request->getContent(), $lineChannelSecret, $signature)) {
-            // TODO 不正アクセス
-            return;
-        }
 
         $httpClient = new CurlHTTPClient ($lineAccessToken);
         $lineBot = new LINEBot($httpClient, ['channelSecret' => $lineChannelSecret]);
@@ -45,7 +40,7 @@ class LineController extends Controller
             }
         } catch (Exception $e) {
             // TODO 例外
-            return;
+            echo "error";
         }
         return;
     }
