@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
+use App\Line;
 use LINE\LINEBot;
 use LINE\LINEBot\Constant\HTTPHeader;
 use LINE\LINEBot\SignatureValidator;
@@ -20,30 +21,43 @@ class LineBotController extends Controller
         $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken );
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
-        try{
-            // LINE Messaging APIの署名を取得
-            $json_string = file_get_contents('php://input');
-            $json_obj = json_decode($json_string);
-            $token=$json_obj->{"events"}[0]->{"replyToken"};
-            $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
-                $response = $bot->replyMessage(
-                    $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($userId)
-                );
-        }catch(Exception $e){
-            'エラー';
-        }
+        // 共通処理（token,type）
+            try{
+                $json_string = file_get_contents('php://input');
+                $json_obj = json_decode($json_string);
+                $token=$json_obj->{"events"}[0]->{"replyToken"};
+                $type=$json_obj->{"events"}[0]->{"type"};
+                switch($type){
+                    case "message":
+                        // $this->message($bot,$token);
+                        $this->userId($json_obj,$token,$bot);
+                        break;
+                    case "follow":
+                        $this->userId($json_obj,$token,$bot);
+                        break;
+                    default:
+                        break;
+                }
+            }catch(Exception $e){
+                return ;
+            }
     }
 
-    public function message(Request $request){
-        $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
-        $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken);
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-        $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7', $textMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    // 初回登録時にuserIdを取得し、dbに保存する。
+    public function userId($json_obj,$token,$bot){
+        $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
+        $line=Line::createUserId($userId);
+        $response = $bot->replyMessage(
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを4日以上してない人を通知します。みんなで催促しましょう。')
+        );
     }
 
+    // メッセージに対する応答
+    public function message($bot,$token){
+        $response = $bot->replyMessage(
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('test')
+        );
+    }
 
 
 }
