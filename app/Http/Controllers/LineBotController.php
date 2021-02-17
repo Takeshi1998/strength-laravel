@@ -47,7 +47,7 @@ class LineBotController extends Controller
         $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
         $line=Line::createUserId($userId);
         $response = $bot->replyMessage(
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを４日以上してない人を通知します。みんなで催促しましょう！')
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを４日以上してない人を通知します。みんなで催促しましょう!')
         );
     }
 
@@ -56,6 +56,15 @@ class LineBotController extends Controller
         $response = $bot->replyMessage(
             $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('test')
         );
+    }
+
+    //  直近4日間の記録がない人を晒すためのtextを作成
+    public function test(){
+        $lazy_person=Line::getLazyPerson();
+        // さぼりがいない時
+        if(empty($lazy_person)){
+            dd($lazy_person);
+        }
     }
 
 

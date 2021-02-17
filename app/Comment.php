@@ -29,4 +29,6 @@ class Comment extends Model
     protected $fillable = ['tweet','zikan'];
 
 
+
+
 }
