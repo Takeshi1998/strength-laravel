@@ -11,11 +11,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cherry+Swash:700" rel="stylesheet">
-   
+
 
     <!-- Styles -->
     <link href="{{asset('css/login.css')}}" rel="stylesheet">
-    
+
   <title>Login</title>
 </head>
 <body>
@@ -38,7 +38,7 @@
                                     </span>
                                 @enderror
                 <label for="password" class="">{{ __('') }}</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password"><a href="/post">test</a>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                 <div class="remember">
                     <label><input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}></label>
                     <label class="remember-me" for="remember">{{ __('Remember Me') }}</label>
-                </div>     
+                </div>
                 <button type="submit" class="button">{{ __('Login') }}</button>
             </div>
     </div>
