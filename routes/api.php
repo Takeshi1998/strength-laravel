@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/line','LineBotController@callback')->name('Line.callback');
 
 // Route::post('/push','LineBotController@message')->name('Line.messagge');
+Route::get('/push','LineBotController@noticeLazy');
 
 
 

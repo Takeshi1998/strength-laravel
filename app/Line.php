@@ -51,7 +51,9 @@ class Line extends Model
                 $text=$text.','.$name;
             }
         }
-        $text=$text.':筋トレの間隔空きすぎ';
+        $text=$text.':筋トレの間隔空きすぎ。刺激を早く与えましょう!';
+        // dbのユーザーnameの名字と名前の間の空白を消去
+        $text=preg_replace("/( |　)/", "", $text);
         return $text;
     }
 }

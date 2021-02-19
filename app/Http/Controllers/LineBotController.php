@@ -54,16 +54,34 @@ class LineBotController extends Controller
     // メッセージに対する応答
     public function message($bot,$token){
         $response = $bot->replyMessage(
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('test')
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('正式リリースまで少し待って')
         );
     }
 
     //  直近4日間の記録がない人を晒すためのtextを作成
-    public function test(){
+    public function noticeLazy(){
         $lazy_person=Line::getLazyPerson();
         // さぼりがいない時
         if(empty($lazy_person)){
-            dd($lazy_person);
+            return;
+        }else{
+            // useridをdbから取り出して、コンマでつなげる
+            $userId=Line::get('line_id')->toArray();
+            $line_ids=null;
+            for($i=0;$i<count($userId);$i++){
+                if($line_ids==null){
+                    $line_ids=$userId[$i]['line_id'];
+                }else{
+                    $line_ids=$line_ids.','.$userId[$i]['line_id'];
+                }
+            }
+            $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
+            $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
+            $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken );
+            $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
+            $response=$bot->multicast(['Uc558080f176eda4608a594c7f5d36ac7','Uff3d83bd0c6dd7f3093cc4e66c9645d7'],new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
+            // 一人だけテスト
+            // $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
         }
     }
 
