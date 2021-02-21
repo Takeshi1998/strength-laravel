@@ -79,7 +79,7 @@ class LineBotController extends Controller
             $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
             // $response=$bot->multicast($line_ids,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
             // 一人だけテスト
-            $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
+            $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('test'));
         }
     }
 
