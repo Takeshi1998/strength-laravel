@@ -16,6 +16,7 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 class LineBotController extends Controller
 {
 
+    // strength公式ラインからのwebhookイベントに対する処理
     public function callback (Request $request){
         $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
         $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
@@ -59,7 +60,7 @@ class LineBotController extends Controller
     }
 
     //  直近4日間の記録がない人を晒すためのtextを作成
-    public function noticeLazy(){
+    public static function noticeLazy(){
         $lazy_person=Line::getLazyPerson();
         // さぼりがいない時
         if(empty($lazy_person)){
