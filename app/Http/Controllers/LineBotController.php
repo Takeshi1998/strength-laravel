@@ -59,7 +59,8 @@ class LineBotController extends Controller
         );
     }
 
-    //  直近4日間の記録がない人を晒すためのtextを作成
+    // コマンド:php arrisan lazy pushでこの関数が呼び出される
+    // 直近4日間の記録がない人を晒すためのtextを作成
     public static function noticeLazy(){
         $lazy_person=Line::getLazyPerson();
         // さぼりがいない時
@@ -68,21 +69,17 @@ class LineBotController extends Controller
         }else{
             // useridをdbから取り出して、コンマでつなげる
             $userId=Line::get('line_id')->toArray();
-            $line_ids=null;
+            $line_ids=[];
             for($i=0;$i<count($userId);$i++){
-                if($line_ids==null){
-                    $line_ids=$userId[$i]['line_id'];
-                }else{
-                    $line_ids=$line_ids.','.$userId[$i]['line_id'];
-                }
+                    array_push($line_ids,$userId[$i]['line_id']);
             }
             $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
             $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
             $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken );
             $bot = new \LINE\LINEBot($httpClient, ['channelSecret' =>$lineChannelSecret]);
-            $response=$bot->multicast(['Uc558080f176eda4608a594c7f5d36ac7','Uff3d83bd0c6dd7f3093cc4e66c9645d7'],new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
+            // $response=$bot->multicast($line_ids,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
             // 一人だけテスト
-            // $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
+            $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
         }
     }
 
