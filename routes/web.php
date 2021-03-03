@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function () {
+    // return view('layouts.header');
+    return view('strength.person');
     return view('welcome');
 });
 
@@ -26,7 +28,7 @@ Auth::routes();
 
 Route::get('/logout', 'AuthenticationController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/person','PersonController@index');
+Route::get('/person','PersonController@index')->name('person');
 // ツイート
 Route::get('/tweet','TweetController@index');
 Route::post('/tweet/post','TweetController@post');

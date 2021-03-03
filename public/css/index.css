@@ -1,111 +1,4 @@
-*{
-  padding:0px;
-  margin:0px;
-}
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
-/* ヘッダー */
-
-
-.header-wrapper{
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color:#fff;
-  position: fixed;
-}
-.main-nav{
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 15px;
-}
-.sub-nav{
-  padding-right: 3%;
-}
-.sub-nav-title{
-  text-decoration: none;
-  color: black;
-  font-size: 15px;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.sub-nav-title:hover{
-  color: #666666;
-}
-
-
-
-
-/* タイムライン1ページ目 */
-.home-wrapper{
-  background-color:#fff;
-  list-style: none;
-  padding-top: 75px;
-}
-.home-wrapper h1{
-  font-size: 15px;
-  padding:0 3%;
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: 1px;
-  font-weight: lighter;
-}
-.page-number{
-  color: #2ca9e1;
-  font-weight: bold;
-}
-.word-orange{
-  color: #f08300;
-  font-weight: bold;
-}
-.home-list{
- list-style: none;
- margin: 3% 2%;
- background-color: #fff;
- border-radius: 10px;
- box-shadow: 0 0 8px gray;
-}
-.home-list-header{
-  background-color:#fff;
-  color: black;
-  border-radius: 10px 10px 0 0;
-  font-weight: normal;
-  padding:5px 10px;
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: 2px;
-  border-bottom:1px solid #2ca9e1 ;
-}
-
-.home-list-content-right{
-  align-items: flex-end;
-  text-align: right;
-  font-size: 5px;
-  color: rgb(101, 119, 134);
-  padding-right: 5px;
-}
-.home-list-content-left{
-  font-size: 12px;
-  padding-left: 2px;
-  letter-spacing: 2px;
-  color: #646464;
-  list-style: none;
-  padding: 10px;
-  line-height: 20px;
-}
-.pagination{
-    font-size: 14px;
-    width: 60%;
-    margin:0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding:20px
-}
-.page-item{
-    display: inline;
-}
-.page-link{
-    text-decoration: none;
-    color:  #2ca9e1;
-}
-/* vue */
 .like-btn{
   font-size: 30px;
   margin-right: 20px;
@@ -117,94 +10,13 @@
  color:#FF0	;
 }
 
-[v-cloak] {
-    display: none;
-  }
+.calender-size{
+    font-size:20px;
+}
+
 /* メディアクエリ */
 @media screen and (max-width: 640px)
 {
-  .header-wrapper{
-    padding:2% 3%;
-  }
-  .main-nav{
-    padding-top:10px;
-  }
-  .sub-nav-title{
-    display:none;
-  }
-  .hamburger-hidden {
-    display: none;
-  }
-  .hamburger-open {
-    display: flex;
-    height: 40px;
-    width: 60px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 100;
-    cursor: pointer;
-    padding-right: 20px;
-  }
-  .hamburger span,
-  .hamburger span:before,
-  .hamburger span:after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 20px;
-    background: #333;
-    transition: 0.5s;
-    position: absolute;
-  }
-  .hamburger-open span:before {
-    bottom: 8px;
-  }
-  .hamburger-open span:after {
-    top: 8px;
-  }
-  #hamburger-check:checked ~ .hamburger-open span {
-    background: rgba(255, 255, 255, 0);
-    z-index:10;
-  }
-  #hamburger-check:checked ~ .hamburger-open span::before {
-    bottom: 0;
-    transform: rotate(45deg);
-  }
-  #hamburger-check:checked ~ .hamburger-open span::after {
-    top: 0;
-    transform: rotate(-45deg);
-  }
-  .hamburger-content {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 100%;
-    z-index: 99;
-    background: #fff;
-    transition: .5s;
-    padding-left: 3%;
-  }
-  .hamburger-item{
-    padding-top:5vw;
-    list-style: none;
-  }
-  .hamburger-item-name{
-    color:black;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-align:left;
-    font-family: 'Teko', sans-serif;
-    font-size: 13px;
-  }
-  .hamburger-item-name:hover{
-    color: rgb(240, 157, 57);
-  }
-  #hamburger-check:checked ~ .hamburger-content {
-    left: 0;
-  }
-
   .like-btn{
     font-size: 20px;
     margin-right: 15px;
@@ -221,16 +33,6 @@
 
 }
 @media screen and (min-width: 640px){
-  .hamburger{
-    display:none;
-  }
-  .header-wrapper{
-    padding: 20px 30px;
-  }
-  .sub-nav-title{
-    padding:0 10px;
-  }
-
   .like-btn{
     font-size: 30px;
     margin-right: 20px;
