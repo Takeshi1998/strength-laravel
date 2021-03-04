@@ -13,7 +13,28 @@
 .calender-size{
     font-size:20px;
 }
+body{
+    padding-top: 60px;
+}
 
+main{
+    position:relative;
+}
+
+.post-button{
+    position: fixed;
+    bottom:70px;
+    z-index:90;
+    margin-left:65%;
+}
+
+.modal-backdrop {
+    z-index:10;
+  }
+
+.modal-dialog{
+    margin-top:100px;
+}
 /* メディアクエリ */
 @media screen and (max-width: 640px)
 {
