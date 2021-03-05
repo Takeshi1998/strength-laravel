@@ -28,10 +28,10 @@ class Comment extends Model
 
     protected $fillable = ['tweet','zikan'];
 
-
+    // ログインuserがその投稿をいいねしてるかどうか判定
     public function getLikeFlagAttribute()
     {
-        $flag=Like::checkLike2($this->id);
+        $flag=Like::checkLike($this->id);
         return $flag;
     }
 

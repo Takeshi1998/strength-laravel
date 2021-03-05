@@ -8,35 +8,15 @@
 <script>
     export default {
         // laravelのbladeでcommentのidを付与
- props: ['comment_id','like_count'],
+ props: ['comment_id','like_count','like_flag'],
  data() {
    return {
-     status: false,
-     show: false,
+     status: this.like_flag,
+     show: true,
      likeCount: this.like_count,
    }
  },
- created() {
-   this.like_check()
- },
  methods:{
-    like_check() {
-     const id = this.comment_id
-     const array = ["comment/",id,"/likedcheck"];
-     const path = array.join('')
-     axios.get(path).then(res => {
-       if(res.data==1) {
-        //like.checkでtrueを返すかどうか調べる
-         this.status = true
-         this.show= true
-       } else {
-         this.status = false
-         this.show=true
-       }
-     }).catch(function(err) {
-         console.log(err)
-     })
-   },
    like(){
         this.show=false
         const id = this.comment_id

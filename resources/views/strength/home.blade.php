@@ -3,7 +3,7 @@
 
 
 <div id="app" v-cloak>
-@foreach($comments as $comment)   @if($comment->like_flag)true @endif
+@foreach($comments as $comment)
 <div class="card mb-3">
     <div class="card-header d-inline-flex justify-content-between">
       <span>{{$comment->name}}</span>
@@ -13,7 +13,7 @@
     <div class="card-body">
       <h5 class="card-title">{!! nl2br(e($comment->tweet))!!}</h5>
       <div class="text-right">
-          <like-component v-bind:comment_id="{{$comment->id}}" v-bind:like_count="{{$comment->likes->count()}}"></like-component>
+          <like-component v-bind:comment_id="{{$comment->id}}" v-bind:like_count="{{$comment->likes->count()}}" v-bind:like_flag='@json($comment->like_flag)'></like-component>
       </div>
     </div>
   </div>

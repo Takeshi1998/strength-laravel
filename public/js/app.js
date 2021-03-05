@@ -1950,67 +1950,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   // laravelのbladeでcommentのidを付与
-  props: ['comment_id', 'like_count'],
+  props: ['comment_id', 'like_count', 'like_flag'],
   data: function data() {
     return {
-      status: false,
-      show: false,
+      status: this.like_flag,
+      show: true,
       likeCount: this.like_count
     };
   },
-  created: function created() {
-    this.like_check();
-  },
   methods: {
-    like_check: function like_check() {
-      var _this = this;
-
-      var id = this.comment_id;
-      var array = ["comment/", id, "/likedcheck"];
-      var path = array.join('');
-      axios.get(path).then(function (res) {
-        if (res.data == 1) {
-          //like.checkでtrueを返すかどうか調べる
-          _this.status = true;
-          _this.show = true;
-        } else {
-          _this.status = false;
-          _this.show = true;
-        }
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     like: function like() {
-      var _this2 = this;
+      var _this = this;
 
       this.show = false;
       var id = this.comment_id;
       var array = ["comment/", id, "/like"];
       var path = array.join('');
       axios.get(path).then(function (res) {
-        _this2.likeCount += 1;
-        _this2.status = true;
+        _this.likeCount += 1;
+        _this.status = true;
       })["catch"](function (err) {
         console.log(err);
       })["finally"](function () {
-        return _this2.show = true;
+        return _this.show = true;
       });
     },
     unlike: function unlike() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.show = false;
       var id = this.comment_id;
       var array = ["comment/", id, "/unlike"];
       var path = array.join('');
       axios.get(path).then(function (res) {
-        _this3.likeCount -= 1;
-        _this3.status = false;
+        _this2.likeCount -= 1;
+        _this2.status = false;
       })["catch"](function (err) {
         console.log(err);
       })["finally"](function () {
-        return _this3.show = true;
+        return _this2.show = true;
       });
     }
   }

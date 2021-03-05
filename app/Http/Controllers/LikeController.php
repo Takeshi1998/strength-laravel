@@ -16,11 +16,7 @@ class LikeController extends Controller
             Like::deleteLike($comment_id);
     }
 
-    // いいねチェック
-    public function check($comment_id){
-        $like=Like::checkLike($comment_id);
-        return response()->json($like);
-    }
+
 
 
 }

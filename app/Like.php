@@ -19,18 +19,7 @@ class Like extends Model
        return $this->belongsTo('App\Comment');
    }
 
-//    likeのレコードがあるならtrue
    public static function checkLike($comment_id){
-       $id=Auth::id();
-        $like=Like::where('comment_id',$comment_id)->where('user_id',$id)->first();
-        if($like!=null){
-            $like=1;
-        }else{
-            $like=0;
-        }
-        return $like;
-    }
-   public static function checkLike2($comment_id){
        $id=Auth::id();
         $like=Like::where('comment_id',$comment_id)->where('user_id',$id)->first();
         if($like!=null){
