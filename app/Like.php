@@ -30,6 +30,16 @@ class Like extends Model
         }
         return $like;
     }
+   public static function checkLike2($comment_id){
+       $id=Auth::id();
+        $like=Like::where('comment_id',$comment_id)->where('user_id',$id)->first();
+        if($like!=null){
+            $like=true;
+        }else{
+            $like=false;
+        }
+        return $like;
+    }
 
     // いいね作成
     public static function createLike($comment_id){

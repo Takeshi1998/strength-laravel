@@ -3,7 +3,7 @@
 
 
 <div id="app" v-cloak>
-@foreach($comments as $comment)
+@foreach($comments as $comment)   @if($comment->like_flag)true @endif
 <div class="card mb-3">
     <div class="card-header d-inline-flex justify-content-between">
       <span>{{$comment->name}}</span>

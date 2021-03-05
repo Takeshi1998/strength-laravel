@@ -29,6 +29,10 @@ class Comment extends Model
     protected $fillable = ['tweet','zikan'];
 
 
-
+    public function getLikeFlagAttribute()
+    {
+        $flag=Like::checkLike2($this->id);
+        return $flag;
+    }
 
 }
