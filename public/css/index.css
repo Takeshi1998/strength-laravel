@@ -12,13 +12,10 @@
 
 .calender-size{
     font-size:20px;
+    text-align: center;
 }
 body{
     padding-top: 60px;
-}
-
-main{
-    position:relative;
 }
 
 .post-button{
@@ -64,4 +61,13 @@ main{
     margin-right: 20px;
    color:#FF0	;
   }
+}
+
+@media screen and (min-width: 1450px){
+    .post-button{
+        position: fixed;
+        bottom:70px;
+        z-index:90;
+        margin-left:55%;
+    }
 }

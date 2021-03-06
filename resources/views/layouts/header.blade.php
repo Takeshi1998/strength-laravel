@@ -25,7 +25,7 @@
                 <a class="nav-link" aria-current="page" href="{{route('person')}}">{{Auth::user()->name}}の記録</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">公式Line</a>
+                <a class="nav-link" href="{{route('line.str')}}">公式Line</a>
               </li>
             </ul>
           </div>

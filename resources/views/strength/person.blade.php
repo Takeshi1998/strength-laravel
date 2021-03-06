@@ -52,7 +52,7 @@
          @endforeach
       </table>
 </div>
-<a  class="sub-nav-title" href="./tweet">記録する</a>
+
 @foreach($comments as $comment)
 <div class="card mb-3">
     <div class="card-header d-inline-flex justify-content-between">

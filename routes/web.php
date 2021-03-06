@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\LineBotController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/person','PersonController@index')->name('person');
 // ツイート
 Route::get('/tweet','TweetController@index')->name('tweet');
-Route::post('/tweet/post','TweetController@post');
+Route::post('/tweet/post','TweetController@post')->name('tweet.post');
 // 編集・消去
 Route::get('/delete','DeleteController@delete');
 Route::get('/update','UpdateController@Update');
@@ -44,7 +44,13 @@ Route::get('/comment/{id}/likedcheck','LikeController@check')->name('Like.check'
 Route::get('/comment/{id}/like','LikeController@index')->name('Like.index');
 Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');
 
-Route::get('t','LineBotController@noticeLazy');
+Route::get('/strength/qr',function(){
+    return view('strength.qr');
+})->name('line.str');
+
+Route::get('test',function(){
+    LineBotController::noticeLazy();
+});
 
 
 

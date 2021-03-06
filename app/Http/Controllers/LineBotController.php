@@ -55,7 +55,7 @@ class LineBotController extends Controller
     // メッセージに対する応答
     public function message($bot,$token){
         $response = $bot->replyMessage(
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('正式リリースまで少し待って')
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('近日サプリ予約機能追加')
         );
     }
 

@@ -38,11 +38,16 @@ class Line extends Model
             return ;
         }
 
-        // さぼりが存在する時
+   
+        //　開発アカウントは除外
         $names=[];
-        foreach($users->get() as $user){
+        foreach($users->get()->except('31') as $user){
             $names[]=$user->name;
         }
+        if(empty($names)){
+            return ;
+        }
+
         $text=null;
         foreach($names as $name){
             if($text==null){

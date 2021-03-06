@@ -27,7 +27,7 @@ class PersonController extends Controller
 
 
 
-
+// NOTE 初期に書いたコード、いずれリファクタリングする
 // calender
 if(empty($_GET['before'])&&empty($_GET['after'])){
     $calender=new Carbon();
