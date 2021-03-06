@@ -8,18 +8,17 @@
 
 ## 🌐 App URL
 
-<<<<<<< HEAD
 ### **https://strength-gym.herokuapp.com/login**  
-=======
-### **https://strength-gym.herokuapp.com/home**  
->>>>>>> d200508fdf76a362fdeb1c020b7122419ee1e52c
 
 ##使用言語、フレームワーク<br>
 laravel,vue,html,css,sql
 
+##開発環境
+virtualbox,heroku,ngrok
+
 ##使い方
 1.一覧画面（みんなの記録）:記録一覧画面。ダンベルのイラストと数字はいいね機能です。<br>
 2.個人一覧画面：カレンダーに、自分が投稿した日がチェックされます。<br>
-3.筋トレのすすめ：新しく筋トレを始める友人のために、最低限の知識をまとめました。<br>
+3.公式Line: 毎朝10時に、4日間記録がない人が存在するかチェックし、存在するならば全員に晒します。
 
 
