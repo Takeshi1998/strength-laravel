@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
-    <link href="{{asset('css/index.css')}}" rel="stylesheet">
+    <link href="{{mix('css/index.css')}}" rel="stylesheet">
     <title>strength</title>
 </head>
 <body>
