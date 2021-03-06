@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\LineBotController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,9 +47,6 @@ Route::get('/strength/qr',function(){
     return view('strength.qr');
 })->name('line.str');
 
-Route::get('test',function(){
-    LineBotController::noticeLazy();
-});
 
 
 
