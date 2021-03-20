@@ -50,7 +50,7 @@ class LineBotController extends Controller
         $line=Line::createUserId($userId);
         $response = $bot->replyMessage(
             // $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを４日以上してない人を通知します。みんなで催促しましょう!')
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('line id保存完了');
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('line id保存完了')
         );
     }
 
