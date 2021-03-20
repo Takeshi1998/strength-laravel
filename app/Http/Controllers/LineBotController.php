@@ -30,8 +30,7 @@ class LineBotController extends Controller
                 $type=$json_obj->{"events"}[0]->{"type"};
                 switch($type){
                     case "message":
-                        $this->userId($json_obj,$token,$bot);
-                        // $this->message($bot,$token);
+                        $this->message($bot,$token);
                         break;
                     case "follow":
                         $this->userId($json_obj,$token,$bot);
@@ -49,8 +48,7 @@ class LineBotController extends Controller
         $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
         $line=Line::createUserId($userId);
         $response = $bot->replyMessage(
-            // $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを４日以上してない人を通知します。みんなで催促しましょう!')
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('line id保存完了')
+            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('筋トレを４日以上してない人を通知します。みんなで催促しましょう!')
         );
     }
 
