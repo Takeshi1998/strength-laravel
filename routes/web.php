@@ -14,13 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('log',function(){
-    return view('str.login');
-});
-
-
-
-
 Auth::routes();
 
 Route::get('/logout', 'AuthenticationController@logout');
@@ -46,6 +39,8 @@ Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');
 Route::get('/strength/qr',function(){
     return view('strength.qr');
 })->name('line.str');
+
+Route::resource('/order','OrderController')->names('orders');
 
 
 
