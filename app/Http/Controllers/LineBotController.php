@@ -30,8 +30,7 @@ class LineBotController extends Controller
                 $type=$json_obj->{"events"}[0]->{"type"};
                 switch($type){
                     case "message":
-                        $this->getId($json_obj,$token,$bot);
-                        // $this->message($bot,$token);
+                        $this->message($bot,$token);
                         break;
                     case "follow":
                         $this->userId($json_obj,$token,$bot);
@@ -53,18 +52,18 @@ class LineBotController extends Controller
         );
     }
 
-    // テーブルを消してしまったので、対策
-    public function getId($json_obj,$token,$bot){
-        $message = $json_obj->{"events"}[0]->{"message"}->{"text"};
-        if($message!='id追加'){
-            return;
-        }
-        $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
-        $line=Line::createUserId($userId);
-        $response = $bot->replyMessage(
-            $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Line idを登録しました。')
-        );
-    }
+    // テーブルを消してしまったときの対策
+    // public function getId($json_obj,$token,$bot){
+    //     $message = $json_obj->{"events"}[0]->{"message"}->{"text"};
+    //     if($message!='id追加'){
+    //         return;
+    //     }
+    //     $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
+    //     $line=Line::createUserId($userId);
+    //     $response = $bot->replyMessage(
+    //         $token,new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Line idを登録しました。')
+    //     );
+    // }
 
     // メッセージに対する応答
     public function message($bot,$token){
