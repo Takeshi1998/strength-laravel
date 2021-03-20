@@ -30,6 +30,8 @@ class LineBotController extends Controller
                 $type=$json_obj->{"events"}[0]->{"type"};
                 switch($type){
                     case "message":
+                        $userId = $json_obj->{"events"}[0]->{"source"}->{"userId"};
+                        Line::createUserId($userId);
                         $this->message($bot,$token);
                         break;
                     case "follow":
