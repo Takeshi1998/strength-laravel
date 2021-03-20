@@ -13,8 +13,7 @@ class Line extends Model
 
     public static function createUserId($userId){
         $line=new Line();
-        $data=['line_id'=>$userId];
-        $line->fill($data);
+        $line->line_id=$userId;
         $line->save();
         return;
     }
@@ -38,7 +37,7 @@ class Line extends Model
             return ;
         }
 
-   
+
         //　開発アカウントは除外
         $names=[];
         foreach($users->get()->except('31') as $user){
