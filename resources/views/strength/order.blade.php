@@ -33,10 +33,11 @@
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">1商品ずつ注文して下さい</h5>
+                                <h5 class="modal-title">1個ずつ注文して下さい</h5>
                               </div>
                             <div class="modal-body text-center">
-                                <form action="" method="post">
+                                <form action="{{route('orders.store')}}" method="post">
+                                    @csrf
                                     <input type="text">
                                     <input type="submit" value="注文する" class="btn btn-primary">
                                 </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderType;
 use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->authorizeResource(Order::class, 'order');
+    }
+
     public function index()
     {
         $user=Auth::user();
@@ -20,32 +26,21 @@ class OrderController extends Controller
         return view('strength.order',['orders'=>$orders]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-
+    // 注文する
     public function store(Request $request)
-    {dd(1);
-        // $order=new Order();
+    {
+        $order=new Order();
+        $user=Auth::user();
+        $order->fill([
+            'product_name'=>$request->product_name,
+            'user_id'=>$user->id,
+            'status'=>OrderType::Undelivered,
+        ]);
 
-        // $user=Auth::user();
-        // $product_name=$request->product_name;
 
-        // $order->save();
-
+        $order->save();
+        return redirect(route('orders.index'));
     }
 
     /**

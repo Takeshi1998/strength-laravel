@@ -8,7 +8,8 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
+        "bensampo/laravel-enum": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0",
@@ -26,7 +27,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4.11 "
+        }
     },
     "extra": {
         "laravel": {
