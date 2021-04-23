@@ -5,7 +5,7 @@
     @foreach($comments as $comment)
     <div class="card mb-3">
         <div class="card-header d-inline-flex justify-content-between">
-            <div @if($comment->talker_id==1)   class="text-primary" @endif>
+            <div>
                 <span>{{$comment->name}}</span>
                 <span>{{$comment->zikan}}</span>
             </div>
