@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div  @if($comment->talker_id==$user->id)   class="card-body text-primary"@else class="card-body"  @endif>
+        <div  @if($comment->talker_id==$user->id)   class="card-body text-success"@else class="card-body"  @endif>
             <h5 class="card-title">{!! nl2br(e($comment->tweet))!!}</h5>
             <div class="text-right">
                 <like-component v-bind:comment_id="{{$comment->id}}" v-bind:like_count="{{$comment->likes->count()}}"
