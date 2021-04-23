@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        $user=Auth::user();
         $comments=Comment::with(['likes'])->orderBy('id','desc')->paginate(15);
-        return view('strength.home',['comments'=>$comments]);
+        return view('strength.home',['comments'=>$comments,'user'=>$user]);
     }
 }
