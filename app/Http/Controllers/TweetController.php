@@ -20,6 +20,7 @@ class TweetController extends Controller
     }
 
     public function post(Request $request){
+        return redirect()->route('home')->with('flash_message', 'サーバーを移行しました！');
         $comment=new Comment();
         $comment->tweet=$request->tweet;
         $user=Auth::user();
@@ -28,7 +29,7 @@ class TweetController extends Controller
         $comment->zikan=Now();
         unset($request->_token);
         $comment->save();
-       
+
         return redirect('/home');
     }
 }

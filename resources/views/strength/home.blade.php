@@ -1,6 +1,12 @@
 @extends('layouts.header')
 @section('main')
 
+@if (session('flash_message'))
+<div class="flash_message">
+    {{ session('flash_message') }}
+</div>
+@endif
+
 <div id="app" v-cloak>
     @foreach($comments as $comment)
     <div class="card mb-3">
