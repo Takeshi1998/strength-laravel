@@ -10,9 +10,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 Auth::routes();
 
@@ -28,17 +26,13 @@ Route::get('/update','UpdateController@Update');
 Route::post('/update/tweet','UpdateController@UpdateTweet');
 Route::get('/study','StudyController@index');
 
-Route::get('/calender',function(){
-    return view('str.calender');
-});
+Route::view('/calender', 'str.calender');
 
 Route::get('/comment/{id}/likedcheck','LikeController@check')->name('Like.check');
 Route::get('/comment/{id}/like','LikeController@index')->name('Like.index');
 Route::get('/comment/{id}/unlike','LikeController@delete')->name('Like.delete');
 
-Route::get('/strength/qr',function(){
-    return view('strength.qr');
-})->name('line.str');
+Route::view('/strength/qr','strength.qr')->name('line.str');
 
 Route::resource('/order','OrderController')->names('orders');
 
