@@ -29,6 +29,7 @@ class LineBotController extends Controller
                 $json_obj = json_decode($json_string);
                 $token=$json_obj->{"events"}[0]->{"replyToken"};
                 $type=$json_obj->{"events"}[0]->{"type"};
+                \Log::error($type);
                 switch($type){
                     case "message":
                         $this->message($bot,$token);
