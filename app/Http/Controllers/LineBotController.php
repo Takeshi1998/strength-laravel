@@ -77,6 +77,7 @@ class LineBotController extends Controller
     // コマンド:php arrisan lazy pushでこの関数が呼び出される
     // 直近4日間の記録がない人を晒すためのtextを作成
     public static function noticeLazy(){
+        \Log::error("daily通知機能を実行");
         $lazy_person=Line::getLazyPerson();
         // さぼりがいない時
         if(empty($lazy_person)){
