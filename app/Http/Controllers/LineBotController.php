@@ -73,10 +73,12 @@ class LineBotController extends Controller
     // メッセージに対する応答
     public function message($bot, $token)
     {
+        \Log::error("message関数実行");
         $response = $bot->replyMessage(
             $token,
             new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('近日サプリ予約機能追加')
         );
+        \Log::error($response);
     }
 
     // コマンド:php arrisan lazy pushでこの関数が呼び出される
