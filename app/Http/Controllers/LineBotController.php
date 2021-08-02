@@ -30,7 +30,6 @@ class LineBotController extends Controller
             $json_obj = json_decode($json_string);
             $token = $json_obj->{"events"}[0]->{"replyToken"};
             $type = $json_obj->{"events"}[0]->{"type"};
-            \Log::error($type);
             switch ($type) {
                 case "message":
                     $this->message($bot, $token);
@@ -73,26 +72,21 @@ class LineBotController extends Controller
     // メッセージに対する応答
     public function message($bot, $token)
     {
-        \Log::error("message関数実行");
         $response = $bot->replyMessage(
             $token,
             new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('近日サプリ予約機能追加')
         );
-        \Log::error($response);
     }
 
     // コマンド:php arrisan lazy pushでこの関数が呼び出される
     // 直近4日間の記録がない人を晒すためのtextを作成
     public static function noticeLazy()
     {
-        \Log::error("daily通知機能を実行");
         $lazy_person = Line::getLazyPerson();
         // さぼりがいない時
         if (empty($lazy_person)) {
             return;
         } else {
-            \Log::error("line　api実行");
-            \Log::error($lazy_person);
             try {
                 // useridをdbから取り出して、コンマでつなげる
                 $userId = Line::get('line_id')->toArray();
@@ -100,8 +94,8 @@ class LineBotController extends Controller
                 for ($i = 0; $i < count($userId); $i++) {
                     array_push($line_ids, $userId[$i]['line_id']);
                 }
-                $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
-                $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
+                $lineAccessToken = config('line.token', "");
+                $lineChannelSecret = config('line.scret', "");
                 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken);
                 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $lineChannelSecret]);
                 $response = $bot->multicast($line_ids, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('テストメッセージ'));
