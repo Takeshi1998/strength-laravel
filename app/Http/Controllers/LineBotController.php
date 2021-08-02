@@ -20,8 +20,8 @@ class LineBotController extends Controller
     public function callback(Request $request)
     {
         \Log::error("公式ラインのwebhook");
-        $lineAccessToken = env('LINE_ACCESS_TOKEN', "");
-        $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
+        $lineAccessToken = config('LINE_ACCESS_TOKEN', "");
+        $lineChannelSecret = config('LINE_CHANNEL_SECRET', "");
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken);
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $lineChannelSecret]);
         // 共通処理（token,type）
