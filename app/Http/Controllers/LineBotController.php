@@ -90,6 +90,7 @@ class LineBotController extends Controller
             return;
         } else {
             \Log::error("line　api実行");
+            \Log::error($lazy_person);
             try {
                 // useridをdbから取り出して、コンマでつなげる
                 $userId = Line::get('line_id')->toArray();
@@ -101,7 +102,7 @@ class LineBotController extends Controller
                 $lineChannelSecret = env('LINE_CHANNEL_SECRET', "");
                 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($lineAccessToken);
                 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $lineChannelSecret]);
-                $response = $bot->multicast($line_ids, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($lazy_person));
+                $response = $bot->multicast($line_ids, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('テストメッセージ'));
                 // 一人だけテスト
                 // $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('origin'));
             } catch (Exception $e) {
