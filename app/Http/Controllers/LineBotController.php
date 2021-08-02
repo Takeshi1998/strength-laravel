@@ -82,12 +82,13 @@ class LineBotController extends Controller
     // 直近4日間の記録がない人を晒すためのtextを作成
     public static function noticeLazy()
     {
+        \Log::error("さぼり関数実行");
         $lazy_person = Line::getLazyPerson();
         // さぼりがいない時
         if (empty($lazy_person)) {
             return;
         } else {
-            try {
+            \Log::error("さぼり晒す");
                 // useridをdbから取り出して、コンマでつなげる
                 $userId = Line::get('line_id')->toArray();
                 $line_ids = [];
@@ -101,9 +102,6 @@ class LineBotController extends Controller
                 $response = $bot->multicast($line_ids, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('テストメッセージ'));
                 // 一人だけテスト
                 // $response = $bot->pushMessage('Uc558080f176eda4608a594c7f5d36ac7',new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('origin'));
-            } catch (Exception $e) {
-                \Log::error($e);
-            }
         }
     }
 }
