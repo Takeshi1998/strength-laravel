@@ -40,7 +40,7 @@ class Line extends Model
 
         //　開発アカウントは除外
         $names=[];
-        foreach($users->get()->except('31') as $user){
+        foreach($users->get()->except([21,31]) as $user){
             $names[]=$user->name;
         }
         if(empty($names)){
